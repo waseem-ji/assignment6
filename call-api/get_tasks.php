@@ -1,6 +1,6 @@
 <?php
 
-
+error_reporting(0);
 $url = "http://localhost:8888/Assignment6/api/readapi.php";
 
 

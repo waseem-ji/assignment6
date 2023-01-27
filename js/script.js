@@ -14,6 +14,7 @@ function addTask() {
       }
   })
   document.getElementById('task').value = "";
+  toastr.success(task,"Task added successfully");
 
   loadTasks();
 }
@@ -60,7 +61,7 @@ function editTask(task,id) {
     data: JSON.stringify({'id' : id, 'task' :updated_task}),
     cache: false
   });
-
+  toastr.success(updated_task,"Task updated successfully");
   loadTasks();
 
 }
@@ -72,6 +73,7 @@ function deleteTask(id) {
     url: "http://localhost:8888/Assignment6/api/delete.php?id=" + id,
     type: 'DELETE'
 });
+toastr.success(" ","Task Deleted");
 loadTasks();
 }
 function done (id){
@@ -90,8 +92,8 @@ function done (id){
       document.getElementById('task_'+id).style.textDecoration='none';
       document.getElementById('edit'+id).disabled = false;
       document.getElementById('delete'+id).disabled = false;
-      
     }
+    
 }
 $(document).ready(function () {
   loadTasks();
