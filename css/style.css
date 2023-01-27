@@ -1,0 +1,184 @@
+.container {
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(220, 216, 195);
+    padding: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+.titlebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.task-box {
+    border: 1px solid black;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.task {
+    flex:2;
+    display: flex;
+}
+.task span {
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    /* justify-content: center; */
+}
+.task input {
+   margin: 10px;
+}
+.buttons {
+    flex:1;
+    display: flex;
+    flex-direction: row;
+    padding: 12px;
+}
+/* CSS */
+.btn {
+  appearance: button;
+  background-color: #1899D6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: din-round,sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.btn:after {
+  background-clip: padding-box;
+  background-color: #1CB0F6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.btn:disabled{
+  cursor: auto;
+  background-color: rgb(56, 59, 56);
+  color: rgb(48, 47, 47);
+}
+.btn:disabled:after {
+    background-color: gainsboro;
+}
+.btn-19:main,
+.btn-19:focus {
+  user-select: auto;
+}
+
+
+.btn-19:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+
+
+.btn-delete {
+    margin-left: 8px;
+    background-color: crimson;
+    
+}
+
+.btn-delete:after {
+    background-color: red;
+}
+
+
+/* Form  */
+.input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.task-input {
+    
+    width: 360px;
+    margin-left: 60px;
+    background: #fff;
+    color: #1d1a1a;
+    font: inherit;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0 , .1);
+    border: 0;
+    outline: 0;
+    padding: 22px 18px;
+}
+/* .task-input {
+    padding: 13px;
+    width: 420px;
+} */
+
+
+/* ------------------------------- */
+
+.add-btn {
+    height: 100%;
+	display: inline-block;
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	border: 0;
+	outline: 0;
+	padding: 0;
+	transition: all 200ms ease-in;
+	cursor: pointer;
+}
+	.add-btn--primary {
+		background: #7f8ff4;
+		color: #fff;
+		box-shadow: 0 0 10px 2px rgba(0, 0, 0, .1);
+		border-radius: 2px;
+		padding: 12px 36px;
+    }
+		.add-btn--primary:hover {
+			background: darken(#7f8ff4, 4%);
+		}
+		
+		.add-btn--primary:active {
+			background: #7f8ff4;
+			box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, .2);
+		}
+	
+	
+	.add-btn--inside {
+		margin-left: -96px;
+	}
+
+
+ 
