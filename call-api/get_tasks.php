@@ -22,16 +22,34 @@ $task_data = $all_tasks->data;
 
 foreach ($task_data as $tasks) {
     $task = $tasks->task;
-    echo "<div class='task$tasks->id task-box' > ";
-    echo "<div class ='task'>";
-        echo "<input type=\"checkbox\"  id='finished".$tasks->id. "' onclick = 'done($tasks->id)'> ";
-        echo "<span id='task_".$tasks->id."' >$tasks->task  </span>";
-
-    // echo "<span>$tasks->status  </span><br>";
-    echo "</div>";
-    echo "<div class=\"buttons\">";
-    echo "<button id='edit".$tasks->id."' onclick=\"editTask('$task',$tasks->id)\" class=\"btn btn-edit value='edit' \" >Edit</button>";
-    echo "<button id='delete".$tasks->id."' onclick=\"deleteTask($tasks->id)\" class = \"btn btn-delete \">Delete</button>";
-    echo "</div>";
-    echo "</div>";
+    $status =  $tasks->status;
+    if ($status == 1){
+        echo "<div class='task$tasks->id task-box' > ";
+        echo "<div class ='task'>";
+            echo "<input type=\"checkbox\"  id='finished".$tasks->id. "' onclick = 'done($tasks->id)' value='$status' checked> ";
+            echo "<span id='task_".$tasks->id."' style='text-decoration: line-through' >$tasks->task  </span>";
+    
+        // echo "<span>$tasks->status  </span><br>";
+        echo "</div>";
+        echo "<div class=\"buttons\">";
+        echo "<button id='edit".$tasks->id."' onclick=\"editTask('$task',$tasks->id)\" class=\"btn btn-edit\" disabled >Edit</button>";
+        echo "<button id='delete".$tasks->id."' onclick=\"deleteTask($tasks->id)\" class = \"btn btn-delete \"  >Delete</button>";
+        echo "</div>";
+        echo "</div>";
+    }
+    else {
+        echo "<div class='task$tasks->id task-box' > ";
+        echo "<div class ='task'>";
+            echo "<input type=\"checkbox\"  id='finished".$tasks->id. "' onclick = 'done($tasks->id)' value='$status'> ";
+            echo "<span id='task_".$tasks->id."' >$tasks->task  </span>";
+    
+        // echo "<span>$tasks->status  </span><br>";
+        echo "</div>";
+        echo "<div class=\"buttons\">";
+        echo "<button id='edit".$tasks->id."' onclick=\"editTask('$task',$tasks->id)\" class=\"btn btn-edit\"  >Edit</button>";
+        echo "<button id='delete".$tasks->id."' onclick=\"deleteTask($tasks->id)\" class = \"btn btn-delete \">Delete</button>";
+        echo "</div>";
+        echo "</div>";
+    }
 }
+

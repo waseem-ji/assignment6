@@ -21,22 +21,26 @@ function addTask() {
 
 function loadTasks() {
 
-  // ---------------------------------
-  // $.ajax({
-  //   method: "GET",
-  //   dataType:'json',
-  //   url: "http://localhost:8888/Assignment6/api/readapi.php",
-  //   success: function (data) {
-  //     $(#current_tasks)
-  //   }
-  // })
-
-  // ---------------------------------
+  
+// $.ajax({
+//   url: "call-api/get_tasks.php",
+//   dataType: 'json',
+//   success: function (data) {
+//     // var jsonData = JSON.parse(data);
+//     var jsonData = data;
+//     for (var i = 0; i < jsonData.data.length; i++) {
+//       // var task = jsonData.data[i];
+//       // console.log(task.task);
+//       $('#task').html(task.task);
+//     }
+//   },
+  
+// });
   $.get("call-api/get_tasks.php", function (data) {
     $("#current_tasks").html(data);
-  });
+
+}) 
 }
-// $("#current_tasks").load("call-api/get_tasks.php");
 // fn to edit task
 
 function editTask(task,id) {
@@ -81,17 +85,22 @@ function done (id){
   console.log (document.getElementById('edit58'));
   
     if(document.getElementById('finished'+id).checked){ 
-      
       document.getElementById('task_'+id).style.textDecoration='line-through';
-      document.getElementById('edit'+id).setAttribute("disabled",true)
-      document.getElementById('delete'+id).setAttribute("disabled",true)
+      document.getElementById('edit'+id).setAttribute("disabled",true);
+      // document.getElementById('delete'+id).setAttribute("disabled",true);
       // document.getElementById('delete'+id).style.display = "none"; 
+      toastr.success("Task marked as DONE");
+      $.get("http://localhost:8888/Assignment6/api/readapi.php?id="+id);
+
+      // loadTasks()
+    
 
       }
     else {
       document.getElementById('task_'+id).style.textDecoration='none';
       document.getElementById('edit'+id).disabled = false;
       document.getElementById('delete'+id).disabled = false;
+      toastr.error("Task not DONE");
     }
     
 }

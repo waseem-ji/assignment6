@@ -40,8 +40,10 @@ $status = 0;
         // }
         ?>
         <div id="current_tasks">
-           
+
         </div>
+
+
         <div class="container">
             <div class="input">
                 <!-- <label for="task" class="label-task"> Enter Taks</label> -->
@@ -53,7 +55,7 @@ $status = 0;
 
             <!-- <input type="submit" value="ADD TAsk" onclick="addTask()"> Call add  task api! -->
 
-        </div>
+
         <!-- Show current tasks -->
         <!-- <form action="#" method="post"> -->
     <!-- ajax form -->
