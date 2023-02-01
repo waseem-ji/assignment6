@@ -1,6 +1,6 @@
 console.log("will this be printed");
 
-function addTask() {
+function addTask(user_id) {
     // e.preventDefault();
     // console.log(e);
     loadTasks();
@@ -8,9 +8,10 @@ function addTask() {
   $.ajax({
     method: "POST",
     dataType:'json',
-    url: "http://localhost:8888/Assignment6/api/create.php",
+    url: "http://localhost/Assignment6/api/create.php",
     data: {
-        'task': task
+        'task': task,
+        'user_id':user_id
       }
   })
   document.getElementById('task').value = "";
@@ -19,27 +20,12 @@ function addTask() {
   loadTasks();
 }
 
-function loadTasks() {
+function loadTasks(user_id = getCookie('user_id')) {
 
   
-// $.ajax({
-//   url: "call-api/get_tasks.php",
-//   dataType: 'json',
-//   success: function (data) {
-//     // var jsonData = JSON.parse(data);
-//     var jsonData = data;
-//     for (var i = 0; i < jsonData.data.length; i++) {
-//       // var task = jsonData.data[i];
-//       // console.log(task.task);
-//       $('#task').html(task.task);
-//     }
-//   },
-  
-// });
-  $.get("call-api/get_tasks.php", function (data) {
+  $.get("call-api/get_tasks.php?user_id="+user_id, function (data) {
     $("#current_tasks").html(data);
-
-}) 
+    }) 
 }
 // fn to edit task
 
@@ -61,7 +47,7 @@ function editTask(task,id) {
   $.ajax({
     type: "PUT",
     contentType: "application/json; charset=utf-8",
-    url: "http://localhost:8888/Assignment6/api/update.php?id=" + id,
+    url: "http://localhost/Assignment6/api/update.php?id=" + id,
     data: JSON.stringify({'id' : id, 'task' :updated_task}),
     cache: false
   });
@@ -74,12 +60,14 @@ function editTask(task,id) {
 // Fn to delete tasks
 function deleteTask(id) {
   $.ajax({
-    url: "http://localhost:8888/Assignment6/api/delete.php?id=" + id,
+    url: "http://localhost/Assignment6/api/delete.php?id=" + id,
     type: 'DELETE'
 });
 toastr.success(" ","Task Deleted");
 loadTasks();
 }
+
+
 function done (id){
   console.log ("passedid"+id);
   console.log (document.getElementById('edit58'));
@@ -90,9 +78,9 @@ function done (id){
       // document.getElementById('delete'+id).setAttribute("disabled",true);
       // document.getElementById('delete'+id).style.display = "none"; 
       toastr.success("Task marked as DONE");
-      $.get("http://localhost:8888/Assignment6/api/readapi.php?id="+id);
+      $.get("http://localhost/Assignment6/api/readapi.php?id="+id);
 
-      // loadTasks()
+      loadTasks()
     
 
       }
@@ -101,9 +89,40 @@ function done (id){
       document.getElementById('edit'+id).disabled = false;
       document.getElementById('delete'+id).disabled = false;
       toastr.error("Task not DONE");
+      $.get("http://localhost/Assignment6/api/readapi.php?id="+id);
+      loadTasks();
     }
     
 }
+function getCookie(name) {
+  // Split cookie string and get all individual name=value pairs in an array
+  var cookieArr = document.cookie.split(";");
+  
+  // Loop through the array elements
+  for(var i = 0; i < cookieArr.length; i++) {
+      var cookiePair = cookieArr[i].split("=");
+      
+      /* Removing whitespace at the beginning of the cookie name
+      and compare it with the given string */
+      if(name == cookiePair[0].trim()) {
+          // Decode the cookie value and return
+          return decodeURIComponent(cookiePair[1]);
+      }
+  }
+  
+  // Return null if not found
+  return null;
+}
+
+// Logout
+function logout() {
+  window.location.replace('./logout.php')
+}
 $(document).ready(function () {
-  loadTasks();
+  
+          var x = document.cookie;
+          // document.write(x['user_id']);
+          user_id = getCookie('user_id');
+    
+  loadTasks(user_id);
 });

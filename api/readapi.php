@@ -6,17 +6,16 @@ header('Access-Control-Allow-Method:GET');
 header('Access-Control-Allow-Header:Content-Type,Access-Control-Allow-Header,Authorization,X-request-With');
 
 include('function.php');
-
 $request_method = $_SERVER["REQUEST_METHOD"];
-
 if ($request_method == "GET") {
     if (isset($_GET['id']))
     {
+        echo $_GET['id'];
         $single_task = markTaskAsCompleted($_GET);
         echo $single_task;
     }
     else {
-        $all_tasks = getTasks();
+        $all_tasks = getTasks($_GET['user_id']);
         echo $all_tasks;
         return $all_tasks;
     }

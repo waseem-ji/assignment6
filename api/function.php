@@ -1,9 +1,8 @@
 <?php
 require "../dbcon.php";
-function getTasks()
-{
-    global $conn;
-    $sql = "SELECT * FROM tasks";
+function getTasks($user_id) {
+    $conn =  dbconnect();
+    $sql = "SELECT * FROM tasks WHERE user_id='$user_id'; ";
     $queryRun = mysqli_query($conn, $sql);
 
     if ($queryRun) {
@@ -38,8 +37,7 @@ function getTasks()
 }
 
 // Error function 
-function error422($message)
-{
+function error422($message) {
     $data = [
         'status' => 422,
         'message' => "$message",
@@ -50,12 +48,12 @@ function error422($message)
     exit();
 }
 // Input tasks to database through API
-function inputTask($inputData)
-{
+function inputTask($inputData){
 
-    global $conn;
+    $conn = dbconnect();
 
     $task = mysqli_real_escape_string($conn, $inputData['task']);
+    $user_id = mysqli_real_escape_string($conn, $inputData['user_id']);
     // $status = mysqli_real_escape_string($conn,$inputData['status']);
 
     if (empty(trim($task))) {
@@ -68,7 +66,7 @@ function inputTask($inputData)
 
     // }
     else {
-        $sql = "INSERT INTO tasks(task) VALUES ('$task')";
+        $sql = "INSERT INTO tasks(task,user_id) VALUES ('$task','$user_id')";
         $query_result = mysqli_query($conn, $sql);
 
         if ($query_result) {
@@ -92,7 +90,7 @@ function inputTask($inputData)
 }
 
 function markTaskAsCompleted($taskIDfromGET) {
-    global $conn;
+    $conn = dbconnect();
     if (!isset($taskIDfromGET['id'])) {
         return error422("task id not found in url");
     } elseif ($taskIDfromGET['id'] == null) {
@@ -126,10 +124,9 @@ function markTaskAsCompleted($taskIDfromGET) {
 }
 
 // Input tasks to database through API
-function updateTask($inputData, $taskParam)
-{
+function updateTask($inputData, $taskParam) {
 
-    global $conn;
+    $conn =dbconnect();
 
     if (!isset($taskParam['id'])) {
         return error422("Customer id not found in url");
@@ -175,9 +172,8 @@ function updateTask($inputData, $taskParam)
 
 // Function to delete Task
 
-function deleteTask($taskParam)
-{
-    global $conn;
+function deleteTask($taskParam) {
+    $conn = dbconnect();
 
     if (!isset($taskParam['id'])) {
         return error422("task id not found in url");

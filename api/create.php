@@ -16,7 +16,6 @@ if ($request_method == "POST") {
     echo $qw;
     $inputData = json_decode(file_get_contents('php://input'),true);
 
-    echo $inputData['task'];
 
 
     if (empty($inputData)) {
