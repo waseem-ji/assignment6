@@ -1,12 +1,10 @@
 <?php
 
 error_reporting(0);
-// include "./dbcon.php";
-include "auth/functions.php";
-$user_id = $_GET['user_id'];
-// echo $user_id;
-$url = "http://localhost/Assignment6/api/readapi.php?user_id=" . $user_id;
-// echo " this is the url " . $url . "  end of line";
+$url = "http://localhost:8888/Assignment6/api/readapi.php";
+
+
+
 
 $json_tasks = file_get_contents($url);
 
@@ -54,5 +52,4 @@ foreach ($task_data as $tasks) {
         echo "</div>";
     }
 }
-return ("this is returned from get_taks.php");
 
