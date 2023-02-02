@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "waseemji4217";
-$database = "todoApp";
+$password = "root";
+$database = "todoAsg6";
 
 $conn = mysqli_connect($servername,$username,$password,$database);
 

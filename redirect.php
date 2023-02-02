@@ -1,7 +1,7 @@
 <?php
   
 // From URL to get redirected URL
-$url = 'http://localhost:8888/Assignment6/api/readapi.php';
+$url = 'http://localhost/Assignment6/api/readapi.php';
   
 // Initialize a CURL session.
 $ch = curl_init();
@@ -23,5 +23,3 @@ $redirectedUrl = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
 curl_close($ch);
 echo "Original URL:   " . $url . "<br/>";
 echo "Redirected URL: " . $redirectedUrl . "<br/>";
-  
-?> 
