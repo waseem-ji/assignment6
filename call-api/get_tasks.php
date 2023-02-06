@@ -1,7 +1,7 @@
 <?php
 
 error_reporting(0);
-$url = "http://localhost/Assignment6/api/readapi.php";
+$url = "http://assignment6.test/api/readapi.php";
 
 
 
